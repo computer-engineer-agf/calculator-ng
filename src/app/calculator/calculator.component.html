@@ -1,0 +1,93 @@
+<h3>Calculator:</h3>
+
+<form [formGroup]="calculatorFormGroup" (ngSubmit)="onSubmit()">
+
+    
+<table>
+    <thead>
+      <tr>
+        <th scope="col">Number A</th>
+        <th scope="col">Operation</th>
+        <th scope="col">Number B</th>        
+        <th scope="col"></th>
+        <th scope="col">Result</th>
+        <th scope="col">DateTime</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td> <input formControlName="operandA" id="operandA" type="text" maxlength="9"  class="inputForm" style="font-size: 14pt; height: 18px; width:110px; "/></td>
+        <td>
+            <select formControlName="operation" style="font-size: 10pt; height: 18px; width:60px; ">
+                <option value="">Select</option>
+                <option value="sum">+</option>
+                <option value="multiply">*</option>
+                <option value="divide">/</option>
+                <option value="substract">-</option>
+            </select>
+        
+        </td>
+        <td><input type="text" formControlName="operandB" maxlength="9" style="font-size: 14pt; height: 18px; width:110px; "/></td>
+        <td> <!-- Submit Button -->
+            <button type="submit" >Equals to</button>
+        </td>
+        <td>{{resultD}}</td>
+        <td></td>                  
+    </tr>
+    <tr>
+        <td>
+            <div *ngIf="formControls.operandA.touched && formControls.operandA.invalid">
+                <div *ngIf="formControls.operandA.errors.required">operandA is required.</div>
+                <div *ngIf="formControls.operandA.errors.pattern">Enter only Numbers.</div>
+            </div>
+        </td>
+        <td>
+            <div *ngIf="formControls.operation.touched && formControls.operation.invalid">
+                <div *ngIf="formControls.operation.errors.required">Operation is required.</div>
+                <div *ngIf="formControls.operation.errors.pattern">Enter only accepted Operation.</div>
+            </div>
+        </td>
+        <td>
+            <div *ngIf="formControls.operandB.touched && formControls.operandB.invalid">
+                <div *ngIf="formControls.operandB.errors.required">operandB is required.</div>
+                <div *ngIf="formControls.operandB.errors.pattern">Enter only Numbers.</div>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+   
+  </table>
+  
+  
+  <h3>Previous Operations:</h3>
+
+    <table id="cssTable" class="cssTable">
+        <thead>
+        <tr>
+           
+            <th scope="col">OperandA</th>
+            <th scope="col">OperandB</th>
+            <th scope="col">Operation</th>
+            <th scope="col">Result</th>
+           
+        </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let calculation of calculations">
+               
+                <td>{{ calculation.operandA }}</td>
+                <td>{{ calculation.operandB }}</td>
+                <td>{{ calculation.operation }}</td>
+                <td>{{ calculation.result }}</td>                  
+               
+            </tr>                          
+        </tbody>
+    
+    </table>
+
+
+  
+
+</form>
