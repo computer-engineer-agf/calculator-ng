@@ -13,6 +13,7 @@ Instructions:
 5. npm -version
 6. ng serve -if problems such as Cannot find module '@angular-devkit/build-angular/package.json' then npm install @angular-devkit/build-angular
 7. open your browser on http://localhost:4200/
-
+for testing
+> ng test 
 
 
